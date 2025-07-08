@@ -41,8 +41,8 @@ pipeline{
             steps{
                 echo "Connecting to Ansible Server"
                 sshagent(['ANSIBLE_SERVER']){
-                    sh 'cd weshopify-platform-services-registry && cp Dockerfile ansible-admin@172.31.0.106:/opt/ci-cd-files'
-                    sh 'cd weshopify-platform-services-registry && cp weshopify-svc-registry-playbook.yml ansible-admin@172.31.0.106:/opt/ci-cd-files'
+                    sh 'cd weshopify-platform-services-registry && cp Dockerfile ansible-admin@172.31.0.106:/opt/ci-cd-files/'
+                    sh 'cd weshopify-platform-services-registry && cp weshopify-svc-registry-playbook.yml ansible-admin@172.31.0.106:/opt/ci-cd-files/'
                 }
             }
         }
