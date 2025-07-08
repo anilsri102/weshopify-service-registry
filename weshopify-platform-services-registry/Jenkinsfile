@@ -37,6 +37,15 @@ pipeline{
                 echo "================Artifact Deploy is Completed============="
             }
         }
+        stage("Copy the files to ansible server"){
+            steps{
+                echo "Connecting to Ansible Server"
+                sshagent(['ANSIBLE_SERVER']){
+                    sh 'cp Dockerfile ansible-admin@172.31.0.106:/opt/ci-cd-files'
+                    sh 'cp weshopify-svc-registry-playbook.yml ansible-admin@172.31.0.106:/opt/ci-cd-files'
+                }
+            }
+        }
     }    
 
 }
