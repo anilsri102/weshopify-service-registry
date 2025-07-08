@@ -1,3 +1,4 @@
+
 pipeline{
     agent{
         label "worker-01-jenkins"
@@ -43,6 +44,13 @@ pipeline{
                 sshagent(['ANSIBLE_SERVER']){
                     sh 'cd weshopify-platform-services-registry && scp Dockerfile ansible-admin@172.31.0.106:/opt/ci-cd-files'
                     sh 'cd weshopify-platform-services-registry && scp weshopify-svc-registry-playbook.yml ansible-admin@172.31.0.106:/opt/ci-cd-files'
+                    sh '''
+                        ssh -tt ansible-admin@172.31.0.106 << EOF
+                            ansible-playbook /opt/ci-cd-files/weshopify-svc-registry-playbook.yml
+                            exit
+                        EOF    
+
+                    '''
                 }
             }
         }
