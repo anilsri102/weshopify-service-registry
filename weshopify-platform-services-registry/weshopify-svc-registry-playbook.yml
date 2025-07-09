@@ -6,5 +6,27 @@
     - name: create an app directory
       shell: mkdir app-dir && chmod 777 app-dir
 
+    - name: create artifact target directory
+      shell: mkdir app-dir/target && chmod 777 app-dir/target
+
+    - name: copy the jfrog file from ansible to docker
+      copy: src=/opt/ci-cd-files/jfrog.sh dest=app-dir
+
+    - name: copy the Dockerfile to Docker server
+      copy: src=/opt/ci-cd-files/Dockerfile dest=app-dir
+  
+    - name: download the artifact from artifactory
+      shell: chmod 777 app-dir/jfrog.sh && sh app-dir/jfrog.sh
+
+    - name: build the docker image
+      shell: 
+
+    - name: push the docker image to hub
+      shell:   
+
+    - name: delete the docker images
+      shell: 
+ 
+
     - name: delete app-directory
-      shell: rm -rf app-dir
+      shell:
